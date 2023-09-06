@@ -1,17 +1,21 @@
 #ifndef _XCONFIG_H
 #define _XCONFIG_H
 
-#include <windows.h>
+#include <cstddef>
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
 
 class XConfig
 {
 public:
-    XConfig(char *filename);
+    XConfig(const char *filename);
     ~XConfig();
-    void LoadFile(char *filename);
-    void GetInt(DWORD &value, char *section, char *var, int def);
+    void LoadFile(const char *filename);
+    void GetInt(int &value, const char *section, const char *var, int def);
 private:
-    char *path;
+    char *path = NULL;
+    void GetVal(char **value, const char *section, const char *var);
 };
 
 #endif
